@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CultiCalendar - Tu asistente para el cultivo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1><span class="logo-accent">CHECHU</span>Calendarios</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active" id="nav-home">Inicio</a></li>
+                <li><a href="#" id="nav-new-calendar">Crear Calendario</a></li>
+                <li><a href="#" id="nav-my-calendars">Mis Calendarios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Página de inicio -->
+        <section id="home-page" class="page active">
+            <div class="welcome-container">
+                <h2>Bienvenido a tu asistente de cultivo</h2>
+                <p>Crea calendarios personalizados para el seguimiento de tus cultivos desde la floración hasta el corte.</p>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-calendar-plus"></i>
+                        <h3>Crea calendarios</h3>
+                        <p>Define el período de floración y los productos que utilizarás.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-tasks"></i>
+                        <h3>Seguimiento diario</h3>
+                        <p>Marca las tareas completadas y registra los productos utilizados.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-edit"></i>
+                        <h3>Personalización</h3>
+                        <p>Añade notas y ajusta tu calendario según evolucione tu cultivo.</p>
+                    </div>
+                </div>
+                <div class="cta-container">
+                    <button id="start-button" class="primary-button">Comenzar ahora</button>
+                    <a href="https://chechu19062001.github.io/frutas-chechu/" class="secondary-button" id="tables-button">
+                        Crea tu tabla de cultivo <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página de crear calendario -->
+        <section id="new-calendar-page" class="page">
+            <div class="form-container">
+                <h2>Crear nuevo calendario de cultivo</h2>
+                <form id="new-calendar-form">
+                    <div class="form-group">
+                        <label for="calendar-name">Nombre del calendario:</label>
+                        <input type="text" id="calendar-name" required placeholder="Ej: Cultivo de primavera">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="start-date">Fecha de inicio de floración:</label>
+                        <input type="date" id="start-date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="flowering-weeks">Semanas de floración:</label>
+                        <select id="flowering-weeks" required>
+                            <option value="">Selecciona las semanas</option>
+                            <option value="6">6 semanas</option>
+                            <option value="7">7 semanas</option>
+                            <option value="8">8 semanas</option>
+                            <option value="9">9 semanas</option>
+                            <option value="10">10 semanas</option>
+                            <option value="11">11 semanas</option>
+                            <option value="12">12 semanas</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Productos a utilizar:</label>
+                        <div id="products-container">
+                            <div class="product-item">
+                                <input type="text" class="product-name" placeholder="Nombre del producto" required>
+                                <button type="button" class="remove-product"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <button type="button" id="add-product" class="secondary-button"><i class="fas fa-plus"></i> Añadir producto</button>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="primary-button">Crear calendario</button>
+                        <button type="button" id="cancel-new-calendar" class="secondary-button">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Página de mis calendarios -->
+        <section id="my-calendars-page" class="page">
+            <div class="calendars-container">
+                <h2>Mis calendarios de cultivo</h2>
+                <div id="calendars-list">
+                    <!-- Los calendarios se cargarán dinámicamente aquí -->
+                    <p id="no-calendars-message">No tienes calendarios creados. <a href="#" id="create-first-calendar">Crea tu primer calendario</a>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página de ver/editar calendario -->
+        <section id="view-calendar-page" class="page">
+            <div class="calendar-view-container">
+                <div class="calendar-header">
+                    <h2 id="calendar-view-title">Nombre del calendario</h2>
+                    <div class="calendar-actions">
+                        <button id="edit-calendar-button" class="secondary-button"><i class="fas fa-edit"></i> Editar</button>
+                        <button id="delete-calendar-button" class="danger-button"><i class="fas fa-trash"></i> Eliminar</button>
+                        <button id="back-to-calendars-button" class="secondary-button"><i class="fas fa-arrow-left"></i> Volver</button>
+                    </div>
+                </div>
+                
+                <div class="calendar-info">
+                    <p><strong>Fecha de inicio:</strong> <span id="calendar-start-date"></span></p>
+                    <p><strong>Fecha de corte:</strong> <span id="calendar-end-date"></span></p>
+                    <p><strong>Semanas de floración:</strong> <span id="calendar-weeks"></span>
+                        <button id="add-week-button" class="micro-button" title="Añadir semana"><i class="fas fa-plus"></i></button>
+                    </p>
+                </div>
+                
+                <div class="products-list">
+                    <h3>Productos</h3>
+                    <ul id="calendar-products">
+                        <!-- Los productos se cargarán dinámicamente aquí -->
+                    </ul>
+                </div>
+                
+                <div class="calendar-grid-container">
+                    <div class="calendar-controls">
+                        <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                        <h3 id="current-month-year">Mayo 2025</h3>
+                        <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="week-days">
+                        <div>Lun</div>
+                        <div>Mar</div>
+                        <div>Mié</div>
+                        <div>Jue</div>
+                        <div>Vie</div>
+                        <div>Sáb</div>
+                        <div>Dom</div>
+                    </div>
+                    <div id="calendar-grid" class="calendar-grid">
+                        <!-- Los días del calendario se cargarán dinámicamente aquí -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Página de editar calendario -->
+        <section id="edit-calendar-page" class="page">
+            <div class="form-container">
+                <h2>Editar calendario de cultivo</h2>
+                <form id="edit-calendar-form">
+                    <div class="form-group">
+                        <label for="edit-calendar-name">Nombre del calendario:</label>
+                        <input type="text" id="edit-calendar-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-start-date">Fecha de inicio de floración:</label>
+                        <input type="date" id="edit-start-date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-flowering-weeks">Semanas de floración:</label>
+                        <select id="edit-flowering-weeks" required>
+                            <option value="6">6 semanas</option>
+                            <option value="7">7 semanas</option>
+                            <option value="8">8 semanas</option>
+                            <option value="9">9 semanas</option>
+                            <option value="10">10 semanas</option>
+                            <option value="11">11 semanas</option>
+                            <option value="12">12 semanas</option>
+                            <option value="13">13 semanas</option>
+                            <option value="14">14 semanas</option>
+                            <option value="15">15 semanas</option>
+                            <option value="16">16 semanas</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Productos a utilizar:</label>
+                        <div id="edit-products-container">
+                            <!-- Los productos se cargarán dinámicamente aquí -->
+                        </div>
+                        <button type="button" id="edit-add-product" class="secondary-button"><i class="fas fa-plus"></i> Añadir producto</button>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="primary-button">Guardar cambios</button>
+                        <button type="button" id="cancel-edit-calendar" class="secondary-button">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal para editar día -->
+    <div id="day-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-date">Fecha: </h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="day-status">
+                    <label>
+                        <input type="checkbox" id="day-completed">
+                        Marcar día como completado
+                    </label>
+                </div>
+                
+                <div class="day-products">
+                    <h4>Productos utilizados:</h4>
+                    <div id="day-products-list">
+                        <!-- Los productos se cargarán dinámicamente aquí -->
+                    </div>
+                    <div class="water-option">
+                        <label>
+                            <input type="checkbox" id="water-only">
+                            Riego con agua solamente
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="day-notes">
+                    <h4>Notas:</h4>
+                    <textarea id="day-notes-text" placeholder="Añade notas sobre este día..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-day-button" class="primary-button">Guardar cambios</button>
+                <button id="close-modal-button" class="secondary-button">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3 id="confirm-title">Confirmar acción</h3>
+                <span class="close-confirm-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="confirm-message">¿Estás seguro de que deseas realizar esta acción?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-yes" class="danger-button">Sí, continuar</button>
+                <button id="confirm-no" class="secondary-button">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 <span class="logo-accent">CHECHU</span>Calendarios - Tu asistente para el cultivo</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

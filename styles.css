@@ -1,0 +1,794 @@
+/* Variables globales */
+:root {
+    --primary-color: #00e676;
+    --primary-dark: #00c853;
+    --secondary-color: #111111;
+    --text-color: #f5f5f5;
+    --text-dark: #333333;
+    --background-dark: #121212;
+    --background-darker: #0a0a0a;
+    --background-lighter: #1e1e1e;
+    --border-color: #333333;
+    --danger-color: #f44336;
+    --success-color: #4caf50;
+    --warning-color: #ff9800;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --accent-font: 'Montserrat', sans-serif;
+    --body-font: 'Roboto', sans-serif;
+}
+
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--body-font);
+    background-color: var(--background-dark);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--accent-font);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+/* Botones */
+button, .primary-button, .secondary-button, .danger-button, .micro-button {
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    font-family: var(--accent-font);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.primary-button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.primary-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 230, 118, 0.3);
+}
+
+.secondary-button {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.secondary-button:hover {
+    background-color: rgba(0, 230, 118, 0.1);
+    transform: translateY(-2px);
+}
+
+.danger-button {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.danger-button:hover {
+    background-color: #d32f2f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(244, 67, 54, 0.3);
+}
+
+.micro-button {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.8rem;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.micro-button:hover {
+    background-color: rgba(0, 230, 118, 0.1);
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--background-darker);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.logo-accent {
+    color: var(--primary-color);
+    font-weight: 800;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+nav a:hover, nav a.active {
+    color: var(--primary-color);
+    background-color: rgba(0, 230, 118, 0.1);
+}
+
+/* Main content */
+main {
+    min-height: calc(100vh - 140px);
+    padding: 2rem;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Welcome Page */
+.welcome-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.welcome-container h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.welcome-container p {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.features {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.feature {
+    flex: 1;
+    min-width: 250px;
+    background-color: var(--background-lighter);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px var(--shadow-color);
+}
+
+.feature i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.cta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Form styles */
+.form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: var(--background-lighter);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--background-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-family: var(--body-font);
+}
+
+.form-group input:focus, 
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 230, 118, 0.2);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Productos en formulario */
+.product-item {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    align-items: center;
+}
+
+.remove-product {
+    background-color: transparent;
+    color: var(--danger-color);
+    padding: 0.4rem;
+    cursor: pointer;
+    border: none;
+}
+
+.remove-product:hover {
+    color: #d32f2f;
+}
+
+/* Calendarios */
+.calendars-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.calendars-container h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+#calendars-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.calendar-card {
+    background-color: var(--background-lighter);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.calendar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px var(--shadow-color);
+}
+
+.calendar-card-header {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 1rem;
+    position: relative;
+}
+
+.calendar-card-body {
+    padding: 1.5rem;
+}
+
+.calendar-card-footer {
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+#no-calendars-message {
+    text-align: center;
+    padding: 3rem 1rem;
+    font-size: 1.1rem;
+}
+
+/* Vista de calendario */
+.calendar-view-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.calendar-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.calendar-info {
+    background-color: var(--background-lighter);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.products-list {
+    background-color: var(--background-lighter);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.products-list ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.products-list li {
+    background-color: rgba(0, 230, 118, 0.1);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.calendar-grid-container {
+    background-color: var(--background-lighter);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.calendar-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.calendar-controls button {
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.calendar-controls button:hover {
+    color: var(--primary-color);
+}
+
+.week-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.4rem;
+    padding-top: 0.8rem;
+}
+
+.calendar-day {
+    min-height: 100px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.5rem;
+    position: relative;
+    background-color: var(--background-dark);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.calendar-day:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    border-color: var(--primary-color);
+}
+
+.day-number {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.calendar-day.today {
+    border: 2px solid var(--primary-color);
+}
+
+.calendar-day.inactive {
+    opacity: 0.5;
+}
+
+.calendar-day.completed {
+    background-color: rgba(0, 230, 118, 0.1);
+}
+
+.calendar-day.completed::after {
+    content: "✓";
+    color: var(--primary-color);
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 1rem;
+}
+
+.day-products-indicator {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    margin-top: 0.3rem;
+}
+
+.day-product-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+
+.day-notes-indicator {
+    position: absolute;
+    bottom: 0.3rem;
+    right: 0.3rem;
+    color: var(--warning-color);
+    font-size: 0.8rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background-color: var(--background-lighter);
+    margin: 10% auto;
+    border-radius: 8px;
+    width: 500px;
+    max-width: 90%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease;
+}
+
+.modal-sm {
+    width: 400px;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.close-modal, .close-confirm-modal {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover, .close-confirm-modal:hover {
+    color: var(--primary-color);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Day modal specific styles */
+.day-status {
+    margin-bottom: 1.5rem;
+}
+
+.day-products {
+    margin-bottom: 1.5rem;
+}
+
+.day-products-list {
+    margin: 1rem 0;
+}
+
+.product-checkbox {
+    margin-bottom: 0.5rem;
+}
+
+.water-option {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.day-notes textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.8rem;
+    background-color: var(--background-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-family: var(--body-font);
+    resize: vertical;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--background-darker);
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    nav ul {
+        margin-top: 1rem;
+        gap: 0.5rem;
+    }
+    
+    .features {
+        flex-direction: column;
+    }
+    
+    .calendar-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .modal-content {
+        margin: 20% auto;
+    }
+}
+
+@media (max-width: 576px) {
+    main {
+        padding: 1rem;
+    }
+    
+    .form-container {
+        padding: 1.5rem 1rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions button {
+        width: 100%;
+    }
+    
+    .calendar-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+/* Añadido para mantener coherencia con CHECHUtablas */
+.premium-badge {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+    margin-left: 0.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+/* Estilos para la vista de tabla como en CHECHUtablas */
+.cultivation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    background-color: var(--background-lighter);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.cultivation-table th,
+.cultivation-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cultivation-table th {
+    background-color: var(--background-darker);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.cultivation-table tr:hover {
+    background-color: rgba(0, 230, 118, 0.05);
+}
+
+/* Icono para productos */
+.product-icon {
+    width: 24px;
+    height: 24px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5rem;
+    color: var(--secondary-color);
+    font-size: 0.8rem;
+}
+
+/* Estilos para categorías de productos como en la captura */
+.product-category {
+    margin-bottom: 2rem;
+    background-color: var(--background-lighter);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.product-category h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.product-category h3 i {
+    font-size: 1.2rem;
+}
+
+.product-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.product-option {
+    background-color: var(--background-dark);
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.product-option:hover,
+.product-option.selected {
+    border-color: var(--primary-color);
+    background-color: rgba(0, 230, 118, 0.1);
+}
+
+.product-option.selected {
+    box-shadow: 0 0 0 2px rgba(0, 230, 118, 0.2);
+}
+
+.add-custom-product {
+    margin-top: 1rem;
+    text-align: center;
+}
